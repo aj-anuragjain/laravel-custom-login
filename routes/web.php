@@ -14,3 +14,24 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get("/register", function (){
+    return view("auth.register");
+});
+
+Route::get("/login", function (){
+    return view("auth.login");
+});
+
+Route::get("/forget", function (){
+    return view("auth.forget");
+});
+
+Route::get("/reset", function (){
+    return view("auth.reset");
+});
+
+
+Route::post("/register",  ["as" => "register", "uses" => "RegisterController@index"]);
+Route::post("/login",  ["as" => "login", "uses" => "LoginController@index"]);
+
