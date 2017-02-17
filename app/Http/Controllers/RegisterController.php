@@ -6,14 +6,12 @@ use App\Http\Requests\RegisterRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
 
-class Register extends Controller
+class RegisterController extends Controller
 {
     public function index(RegisterRequest $request, Response $response){
 
-        /*
-         * get input data
-         * */
         $data = $request->all();
 
         $user = new User();
@@ -22,10 +20,11 @@ class Register extends Controller
         $user->phone = $data["phone"];
         $user->email = $data["email"];
         $user->password = bcrypt($data["password"]);
+        $user->save();
 
         $request->session()->put("email", $data["email"]);
         $request->session()->put("phone", $data["phone"]);
 
-        return redirect("/")->with("msg", "Register Successfully...");
+        return redirect("/user/profile");
     }
 }

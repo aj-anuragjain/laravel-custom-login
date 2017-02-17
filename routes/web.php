@@ -15,23 +15,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("/register", function (){
+Route::get("/user/register", function (){
     return view("auth.register");
 });
 
-Route::get("/login", function (){
+Route::get("/user/login", function (){
     return view("auth.login");
 });
 
-Route::get("/forget", function (){
+Route::get("/user/forget", function (){
     return view("auth.forget");
 });
 
-Route::get("/reset", function (){
+Route::get("/user/reset", function (){
     return view("auth.reset");
 });
 
 
-Route::post("/register",  ["as" => "register", "uses" => "RegisterController@index"]);
-Route::post("/login",  ["as" => "login", "uses" => "LoginController@index"]);
+Route::post("/user/register",  ["as" => "register", "uses" => "RegisterController@index"]);
+Route::post("/user/login",  ["as" => "login", "uses" => "LoginController@index"]);
+
+
+
+
+
+Route::get("/user/profile", "profileController@show");
+Route::get("/user/logout", "LogoutController@index");
 
